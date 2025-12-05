@@ -30,9 +30,9 @@ class T(Instruction):
 
 class J(Instruction):
     def exec(self, list_of_all_registers: dict, args):
-        register1, register2 = args
+        register1, register2, jump_to = args
         if list_of_all_registers[register1] == list_of_all_registers[register2]:
-            return True
+            return jump_to
         return False
 
     def __repr__(self):

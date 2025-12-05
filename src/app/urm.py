@@ -272,15 +272,20 @@ class URMExecutorGUI:
 
             # obtenemos entrada
             input_str = self.input_entry.get().strip()
-            try:
-                program_input = json.loads(input_str)
-                if not isinstance(program_input, list):
-                    raise ValueError()
-            except ValueError:
-                messagebox.showerror(
-                    "Error", "La entrada debe ser una lista valida, ej: [5, 2, 0]"
-                )
-                return
+            
+            # Si la entrada está vacía, usar lista vacía []
+            if not input_str:
+                program_input = []
+            else:
+                try:
+                    program_input = json.loads(input_str)
+                    if not isinstance(program_input, list):
+                        raise ValueError()
+                except ValueError:
+                    messagebox.showerror(
+                        "Error", "La entrada debe ser una lista valida, ej: [5, 2, 0], o dejarla vacia para []"
+                    )
+                    return
 
             # obtenemos max iteraciones
             try:
@@ -325,7 +330,7 @@ class URMExecutorGUI:
             if steps and steps >= max_iter:
                 output_text = (
                     f"LIMITE ALCANZADO\n"
-                    f"Resultado: {result}\n"
+                    f"Resultado (R0): {result}\n"
                     f"Pasos ejecutados: {steps}\n"
                     f"Estado: Terminado por limite de iteraciones"
                 )
@@ -333,7 +338,7 @@ class URMExecutorGUI:
             else:
                 output_text = (
                     f"EJECUCION EXITOSA\n"
-                    f"Resultado: {result}\n"
+                    f"Resultado (R0): {result}\n"
                     f"Pasos ejecutados: {steps or 'N/A'}\n"
                     f"Estado: Completado"
                 )

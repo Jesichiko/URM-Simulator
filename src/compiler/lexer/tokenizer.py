@@ -28,6 +28,7 @@ class Tokenizer:
 
     def tokenize_program(self) -> list[tuple]:
         tokenized_program = []
+
         if not self.program:
             return None
 
@@ -51,6 +52,7 @@ class Tokenizer:
                     tokenized_program.append(
                         ("LETTER", line[start_idx:char_idx].lower())
                     )
+                    continue
 
                 # digitos
                 elif char.isdigit():
@@ -58,6 +60,7 @@ class Tokenizer:
                     while char_idx < len(line) and line[char_idx].isdigit():
                         char_idx += 1
                     tokenized_program.append(("NUMBER", line[start_idx:char_idx]))
+                    continue
                 else:
                     char_idx += 1
         return tokenized_program
