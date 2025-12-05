@@ -7,7 +7,7 @@ class Runtime:
         self.trace = []
 
     def _init_registers(self, registers_input: list[int]):
-        for register, value in enumerate(registers_input):
+        for register, value in enumerate(registers_input, start=1):
             self.registers[register] = value
 
     def _format_registers(self, max_display=10):
@@ -52,7 +52,7 @@ class Runtime:
                 self.trace.append("*** LIMITE DE ITERACIONES ALCANZADO ***")
                 self.trace.append(f"Registros finales: {
                                   self._format_registers()}")
-                return self.registers[0], self.trace, steps
+                return self.registers[1], self.trace, steps
 
             # ejecutamos la funcion del indice actual
             possibly_jump = current_instruction.exec(self.registers, args)
@@ -65,7 +65,7 @@ class Runtime:
                     f"  -> R{args[0]} = {self.registers[args[0]]}")
             elif inst_name == "T":
                 self.trace.append(
-                    f"  -> R{args[1]} = R{args[0]} = {self.registers[args[1]]}"
+                    f"  -> R{args[1]} = R{args[0]} = {self.registers[args[0]]}"
                 )
             elif inst_name == "J":
                 if possibly_jump:
@@ -100,7 +100,7 @@ class Runtime:
 
         # fin exitoso
         self.trace.append("=== EJECUCION COMPLETADA ===")
-        self.trace.append(f"Resultado en R0: {self.registers[0]}")
+        self.trace.append(f"Resultado en R1: {self.registers[1]}")
         self.trace.append(f"Total de pasos: {steps}")
 
-        return self.registers[0], self.trace, steps
+        return self.registers[1], self.trace, steps
