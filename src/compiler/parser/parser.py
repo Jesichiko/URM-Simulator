@@ -65,8 +65,8 @@ class Parser:
                 return f"Error: Argumento invalido 'token:{arg_token}' para la instruccion {instruction_value} en linea "
 
             number = int(arg_token[1])  # casteamos de str a int
-            if number < 0:
-                return "Error: Numero negativo invalido en linea "
+            if number <= 0:
+                return "Error: Numero invalido como parametro en linea "
             args.append(number)
 
             peek = self._peek_token()
