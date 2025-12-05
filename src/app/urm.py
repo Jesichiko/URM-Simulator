@@ -360,7 +360,7 @@ class URMExecutorGUI:
             if steps and steps >= max_iter:
                 output_text = (
                     f"LIMITE ALCANZADO\n"
-                    f"Resultado (R0): {result}\n"
+                    f"Resultado (R1): {result}\n"
                     f"Pasos ejecutados: {steps}\n"
                     f"Estado: Terminado por limite de iteraciones"
                 )
@@ -368,7 +368,7 @@ class URMExecutorGUI:
             else:
                 output_text = (
                     f"EJECUCION EXITOSA\n"
-                    f"Resultado (R0): {result}\n"
+                    f"Resultado (R1): {result}\n"
                     f"Pasos ejecutados: {steps or 'N/A'}\n"
                     f"Estado: Completado"
                 )
