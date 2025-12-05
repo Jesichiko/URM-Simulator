@@ -3,6 +3,7 @@ from typing import Literal
 from src.compiler.parser.implementations.instructions import J, S, T, Z
 from src.compiler.parser.interfaces.instruction import Instruction
 
+
 class Parser:
     def __init__(self, tokens: list[tuple]):
         self.ast: list[tuple[str, Instruction, tuple]] = []
@@ -67,7 +68,11 @@ class Parser:
             arg_token = self._get_token()
             if arg_token[0] != "NUMBER":
                 return f"Error: Argumento invalido '{arg_token}' para la instruccion {inst_name} en linea"
-            args.append(int(arg_token[1]))  # casteamos a int
+
+            number = int(arg_token[1])  # casteamos de str a int
+            if number < 0:
+                return f"Error: Numero negativo invalido '{arg_token} en linea"
+            args.append(number)
 
             peek = self._peek_token()
             if not peek:

@@ -1,9 +1,10 @@
-from typing import defaultdict
+from collections import defaultdict
 
 
 class Runtime:
     def __init__(self):
         self.registers = defaultdict(int)
+        self.trace = []
 
     def _init_registers(self, registers_input: list[int]):
         for register, value in enumerate(registers_input):
@@ -22,7 +23,7 @@ class Runtime:
             steps += 1
 
             if steps >= max_steps:
-                return self.registers[0], steps
+                return self.registers[0], self.trace, steps
 
             # ejecutamos la funcion del indice actual
             possibly_jump = current_instruction.exec(self.registers, args)
@@ -36,4 +37,4 @@ class Runtime:
             # cualquier otra funcion
             current_index_instruction += 1
 
-        return self.registers[0], None
+        return self.registers[0], self.trace, steps
