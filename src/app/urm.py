@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext, ttk
 
-from src.compiler.lexer.tokenizer import Tokenizer
-from src.compiler.parser.parser import Parser
-from src.runtime.run_program import Runtime
+from compiler.lexer.tokenizer import Tokenizer
+from compiler.parser.parser import Parser
+from runtime.run_program import Runtime
 
 
 class URMExecutorGUI:

@@ -43,7 +43,7 @@ Once the dependencies are installed, you can build the executable using the `PyI
 
 ```sh
 # Run PyInstaller
-./.venv/bin/pyinstaller --name URM_Machine --onefile src/app/urm.py
+./.venv/bin/pyinstaller --name URM_Machine --onefile --windowed main.py
 ```
 
 The final executable will be located in the `dist/` directory.
